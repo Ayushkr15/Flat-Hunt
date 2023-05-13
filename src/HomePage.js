@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app"; // updated import
 import "firebase/compat/database"; // updated import
+import FlatCard from "./FlatCard";
 
 function HomePage() {
   const [flatsData, setFlatsData] = useState([]);
@@ -36,20 +37,11 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
+    <div className="card-container">
       {flatsData.length === 0 ? (
         <p>Loading flats...</p>
       ) : (
-        flatsData.map(flat => (
-          <div key={flat.id}>
-            <img src={flat.imageUrl} alt={flat.name} />
-            <h2>Name: {flat.name}</h2>
-            <p>
-              <b>Despciption:</b> {flat.description}
-            </p>
-            <p><b>:Facilities:</b> {flat.facilities}</p>
-          </div>
-        ))
+        flatsData.map(flat => <FlatCard key={flat.id} flat={flat} />)
       )}
     </div>
   );
