@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 function AccommodationPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [accommodation, setAccommodation] = useState(null);
 
   useEffect(() => {
@@ -67,7 +69,9 @@ function AccommodationPage() {
           <hr />
           <h4>Price:</h4>
           <p>{accommodation.price}</p>
-          <button className="btn btn-primary">Interested</button>
+          <button className="btn btn-primary" onClick={() => navigate("/form")}>
+            Interested
+          </button>
         </div>
       </div>
     </div>
