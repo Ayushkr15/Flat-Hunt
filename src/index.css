@@ -12,3 +12,12 @@ code {
     monospace;
 }
 
+.slick-slider {
+  margin-bottom: 2rem;
+}
+
+.slick-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

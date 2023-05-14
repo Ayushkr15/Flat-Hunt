@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase/compat/app"; // updated import
-import "firebase/compat/database"; // updated import
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
 import { Link } from "react-router-dom";
 import { FiMapPin } from "react-icons/fi";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 function HomePage() {
   const [flatsData, setFlatsData] = useState([]);
@@ -27,6 +29,7 @@ function HomePage() {
       const flatsData = Object.keys(flats).map(key => ({
         id: key,
         ...flats[key],
+        images: flats[key].images.map(img => ({ url: img })),
       }));
       setFlatsData(flatsData);
     });
@@ -36,6 +39,21 @@ function HomePage() {
       flatsRef.off();
     };
   }, []);
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
     <div className="container my-4">
@@ -47,11 +65,17 @@ function HomePage() {
           flatsData.map(flat => (
             <div className="col" key={flat.id}>
               <div className="card h-100">
-                <img
-                  src={flat.imageUrl}
-                  alt={flat.name}
-                  className="card-img-top"
-                />
+                <Carousel responsive={responsive}>
+                  {flat.images.map((img, index) => (
+                    <div key={index}>
+                      <img
+                        src={img.url}
+                        alt={flat.name}
+                        className="card-img-top"
+                      />
+                    </div>
+                  ))}
+                </Carousel>
                 <div className="card-body">
                   <h5 className="card-title">{flat.name}</h5>
                   <div className="col d-flex align-items-center">
@@ -62,7 +86,6 @@ function HomePage() {
                     <b>Price: </b>
                     {flat.price}
                   </p>
-                  {/* <strong>Facilities:</strong> {flat.facilities} */}
                 </div>
                 <div className="card-footer">
                   <Link to={`/accommodation/${flat.id}`}>
