@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app"; // updated import
 import "firebase/compat/database"; // updated import
 import { Link } from "react-router-dom";
-// import FlatCard from "./FlatCard";
+import { FiMapPin } from "react-icons/fi";
 
 function HomePage() {
   const [flatsData, setFlatsData] = useState([]);
@@ -54,17 +54,20 @@ function HomePage() {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{flat.name}</h5>
-                  <p className="card-text">{flat.description}</p>
+                  <div className="col d-flex align-items-center">
+                    <FiMapPin />
+                    <p className="card-text">{flat.location}</p>
+                  </div>
                   <p className="card-text">
                     <b>Price: </b>
                     {flat.price}
                   </p>
-                  <strong>Facilities:</strong> {flat.facilities}
+                  {/* <strong>Facilities:</strong> {flat.facilities} */}
                 </div>
                 <div className="card-footer">
-                <Link to={`/accommodation/${flat.id}`}>
-                  <button className="btn btn-primary">Book Now</button>
-                </Link>
+                  <Link to={`/accommodation/${flat.id}`}>
+                    <button className="btn btn-primary">View Details</button>
+                  </Link>
                 </div>
               </div>
             </div>
