@@ -65,7 +65,11 @@ function HomePage() {
           flatsData.map(flat => (
             <div className="col" key={flat.id}>
               <div className="card h-100">
-                <Carousel responsive={responsive}>
+                <Carousel
+                  responsive={responsive}
+                  className="carousel-fade"
+                  fade={true}
+                >
                   {flat.images.map((img, index) => (
                     <div key={index}>
                       <img
