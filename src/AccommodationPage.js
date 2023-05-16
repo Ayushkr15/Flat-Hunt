@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import { useParams, useNavigate } from "react-router-dom";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+
 
 function AccommodationPage() {
   const { id } = useParams();
@@ -45,6 +47,11 @@ function AccommodationPage() {
     return <p>Loading...</p>;
   }
 
+  const latitudeLongitude = accommodation?.["latitude-longitude"]; // Get the latitude and longitude string from your Firebase data
+  const [latitude, longitude] = latitudeLongitude?.split(",") || [];
+  if (!latitude || !longitude) {
+    return <p>Latitude or longitude data is missing.</p>;
+  }
   return (
     <div className="container my-5">
       <div className="header">
@@ -53,7 +60,7 @@ function AccommodationPage() {
       </div>
 
       <div className="row">
-        <div className="col-md-5">
+        <div className="col-md-7">
           <img
             className="d-block w-100"
             src={accommodation.imageUrl}
@@ -74,13 +81,29 @@ function AccommodationPage() {
           </ul>
         </div>
       </div>
-      <div className="col-md-7">
+      <div className="col descriptionInfo">
+        <h2>Description</h2>
         <p>{accommodation.description}</p>
       </div>
-      
       <button className="btn btn-primary" onClick={() => navigate("/form")}>
         Interested
       </button>
+
+      <div className="owner-details-box">
+        <h3>Owner Details</h3>
+        <div className="owner-info">
+          <p>
+            <strong>Name:</strong> {accommodation.ownerName}
+          </p>
+          <p>
+            <strong>Contact Number:</strong> {accommodation.ownerContactInfo}
+          </p>
+        </div>
+      </div>
+      
+        
+
+
     </div>
   );
 }
