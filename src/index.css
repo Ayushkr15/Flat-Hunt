@@ -41,3 +41,15 @@ code {
 .owner-details-box .owner-info p {
   margin-bottom: 5px;
 }
+.map-container {
+  width: 100%;
+  height: 400px; /* Adjust the height as per your requirement */
+  padding: 10px;
+  margin: 20px;
+}
+
+.interestedBtn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 50px;
+}
