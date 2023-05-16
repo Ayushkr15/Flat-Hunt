@@ -23,14 +23,17 @@ function HomePage() {
     });
 
     // Fetch data from Firebase Realtime Database
-    const flatsRef = firebase.database().ref("flats");
+    const flatsRef = firebase.database().ref("flats"); // Declare flatsRef variable
+
     flatsRef.on("value", snapshot => {
       const flats = snapshot.val();
+      console.log("flats:", flats);
       const flatsData = Object.keys(flats).map(key => ({
         id: key,
         ...flats[key],
         images: flats[key].images.map(img => ({ url: img })),
       }));
+      console.log("flatsData:", flatsData);
       setFlatsData(flatsData);
     });
 
@@ -62,24 +65,39 @@ function HomePage() {
         {flatsData.length === 0 ? (
           <p className="text-center">Loading flats...</p>
         ) : (
+          flatsData.length &&
           flatsData.map(flat => (
             <div className="col" key={flat.id}>
               <div className="card h-100">
-                <Carousel
-                  responsive={responsive}
-                  className="carousel-fade"
-                  fade={true}
+                <div
+                  style={{
+                    paddingBottom: "30px",
+                    position: "relative",
+                  }}
                 >
-                  {flat.images.map((img, index) => (
-                    <div key={index}>
-                      <img
-                        src={img.url}
-                        alt={flat.name}
-                        className="card-img-top"
-                      />
-                    </div>
-                  ))}
-                </Carousel>
+                  <Carousel
+                    responsive={responsive}
+                    arrows={false}
+                    autoPlay={true}
+                    autoPlaySpeed={3000}
+                    infinite={true}
+                    partialVisible={true}
+                    transitionDuration={1000}
+                    showDots={true}
+                    slidesToSlide={1}
+                  >
+                    {flat.images &&
+                      flat.images.map((img, index) => (
+                        <div key={index}>
+                          <img
+                            src={img.url}
+                            alt={flat.name}
+                            className="card-img-top"
+                          />
+                        </div>
+                      ))}
+                  </Carousel>
+                </div>
                 <div className="card-body">
                   <h5 className="card-title">{flat.name}</h5>
                   <div className="col d-flex align-items-center">

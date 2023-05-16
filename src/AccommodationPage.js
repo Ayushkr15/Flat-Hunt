@@ -3,7 +3,6 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 function AccommodationPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -48,8 +47,13 @@ function AccommodationPage() {
 
   return (
     <div className="container my-5">
+      <div className="header">
+        <h2>{accommodation.name}</h2>
+        <span>{accommodation.location}</span>
+      </div>
+
       <div className="row">
-        <div className="col-md-7">
+        <div className="col-md-5">
           <img
             className="d-block w-100"
             src={accommodation.imageUrl}
@@ -57,23 +61,26 @@ function AccommodationPage() {
           />
         </div>
         <div className="col-md-5">
-          <h1 className="mb-3">{accommodation.name}</h1>
-          <p>{accommodation.description}</p>
-          <hr />
-          <h4>Facilities:</h4>
+          <h2>What this place offers?</h2>
           <ul>
-            {accommodation.facilities.split(", ").map((facility, index) => (
-              <li key={index}>{facility}</li>
-            ))}
+            <li>Furnished: {accommodation.furnished ? "Yes" : "No"}</li>
+            <li>Type: {accommodation.type}</li>
+            <li>Facilities: {accommodation.facilities.join(", ")}</li>
+            <li>Security: {accommodation.security}</li>
+            <li>Independent: {accommodation.independent ? "Yes" : "No"}</li>
+            <li>Amenities: {accommodation.amenities.join(", ")}</li>
+            <li>Distance: {accommodation.distance} km</li>
+            <li>For: {accommodation.for}</li>
           </ul>
-          <hr />
-          <h4>Price:</h4>
-          <p>{accommodation.price}</p>
-          <button className="btn btn-primary" onClick={() => navigate("/form")}>
-            Interested
-          </button>
         </div>
       </div>
+      <div className="col-md-7">
+        <p>{accommodation.description}</p>
+      </div>
+      
+      <button className="btn btn-primary" onClick={() => navigate("/form")}>
+        Interested
+      </button>
     </div>
   );
 }
