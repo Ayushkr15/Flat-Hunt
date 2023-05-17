@@ -1,135 +1,65 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import * as THREE from "three";
+import GLOBE from "vanta/dist/vanta.globe.min.js";
 import { Link } from "react-router-dom";
-import Navbar from "./Navbar";
-import { Particles } from "react-tsparticles";
-
-const particleConfig = {
-  // Particle configuration options
-  particles: {
-    number: {
-      value: 100,
-      density: {
-        enable: true,
-        value_area: 800,
-      },
-    },
-    color: {
-      value: "#ffffff",
-    },
-    shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: "#000000",
-      },
-      polygon: {
-        nb_sides: 5,
-      },
-      image: {
-        src: "img/github.svg",
-        width: 100,
-        height: 100,
-      },
-    },
-    opacity: {
-      value: 0.5,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false,
-      },
-    },
-    size: {
-      value: 3,
-      random: true,
-      anim: {
-        enable: false,
-        speed: 40,
-        size_min: 0.1,
-        sync: false,
-      },
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#ffffff",
-      opacity: 0.4,
-      width: 1,
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200,
-      },
-    },
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: true,
-        mode: "repulse",
-      },
-      onclick: {
-        enable: true,
-        mode: "push",
-      },
-      resize: true,
-    },
-    modes: {
-      grab: {
-        distance: 400,
-        line_linked: {
-          opacity: 1,
-        },
-      },
-      bubble: {
-        distance: 400,
-        size: 40,
-        duration: 2,
-        opacity: 8,
-        speed: 3,
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-      },
-      push: {
-        particles_nb: 4,
-      },
-      remove: {
-        particles_nb: 2,
-      },
-    },
-  },
-  retina_detect: true,
-};
 
 const LandingPage = () => {
+  const vantaRef = useRef(null);
+
+  useEffect(() => {
+    const vantaEffect = GLOBE({
+      el: vantaRef.current,
+      THREE: THREE,
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      backgroundColor: 0x23153c,
+      color: 0xff3f81,
+      color2: 0xffffff,
+    });
+
+    return () => {
+      if (vantaEffect) {
+        vantaEffect.destroy();
+      }
+    };
+  }, []);
+
   return (
-    <>
-      <Navbar />
-      <div className="particles-container">
-        <Particles id="particles" options={particleConfig} />
-        <div className="content">
-          <h1>Welcome to My Project</h1>
-          <p>This landing page provides information about my project.</p>
-          <Link to="/home">
-            <button>Go to HomePage</button>
-          </Link>
-        </div>
+    <div
+      style={{
+        height: "100vh",
+        width: "100%",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: "40%",
+          transform: "translate(0, -50%)",
+          textAlign: "left",
+          color: "#fff",
+          zIndex: 1,
+          padding: "0 20px",
+          marginLeft: "100px",
+        }}
+      >
+        <h1>Welcome to your HOME FINDER</h1>
+        <p>Find the best accommodation that suits you the best!</p>
+        <Link to="/home">
+          <button type="button" class="btn btn-light">
+            Explore
+          </button>
+        </Link>
       </div>
-    </>
+      <div ref={vantaRef} style={{ width: "100%", height: "100%" }}></div>
+    </div>
   );
 };
 

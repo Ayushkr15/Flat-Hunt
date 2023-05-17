@@ -3,7 +3,9 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from "./Navbar";
 import "./ContactUsPage.scss";
+
 
 const ContactUsPage = () => {
   const [name, setName] = useState("");
@@ -25,7 +27,6 @@ const ContactUsPage = () => {
         storageBucket: "form-35a16.appspot.com",
         messagingSenderId: "1028912595083",
         appId: "1:1028912595083:web:458ff4ba7a13b0c860d48e",
-        // ...
       };
       firebase.initializeApp(firebaseConfig);
 
@@ -54,37 +55,40 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="ContactUsPage">
-      <h2>Contact Us</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Subject"
-          value={subject}
-          onChange={e => setSubject(e.target.value)}
-        />
-        <textarea
-          rows="4"
-          placeholder="Message"
-          value={message}
-          onChange={e => setMessage(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <ToastContainer position="top-right" autoClose={3000} />
-    </div>
+    <>
+      <Navbar />
+      <div className="ContactUsPage">
+        <h2>Contact Us</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Subject"
+            value={subject}
+            onChange={e => setSubject(e.target.value)}
+          />
+          <textarea
+            rows="4"
+            placeholder="Message"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+        <ToastContainer position="top-right" autoClose={3000} />
+      </div>
+    </>
   );
 };
 

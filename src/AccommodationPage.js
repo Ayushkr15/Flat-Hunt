@@ -5,12 +5,22 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
 import { fromLonLat } from "ol/proj";
+
+import NavBar from "./Navbar";
+import { FiMapPin } from "react-icons/fi";
+import { AiOutlineHome } from "react-icons/ai";
+import {ImManWoman} from "react-icons/im";
+import {BsBuildingsFill} from "react-icons/bs";
+import {AiTwotoneStar} from "react-icons/ai";
+import {MdSecurity} from "react-icons/md";
+import {RiEmotionHappyFill} from "react-icons/ri";
+import {IoIosRocket} from "react-icons/io";
+import {RiPinDistanceFill} from "react-icons/ri";
 
 function AccommodationPage() {
   const { id } = useParams();
@@ -72,9 +82,23 @@ function AccommodationPage() {
 
   return (
     <div className="container my-5">
+      <style>{`
+        body {
+          background-color: #F5F5F5;
+        }
+        .carousel-image {
+          height: 500px; 
+          border-radius: 20px;
+        }
+      `}</style>
+      <NavBar />
       <div className="header">
         <h2>{accommodation.name}</h2>
-        <span>{accommodation.location}</span>
+        <span>
+          {" "}
+          <FiMapPin />
+          {accommodation.location}
+        </span>
       </div>
       <div className="row">
         <div className="col-md-7">
@@ -119,7 +143,7 @@ function AccommodationPage() {
             {accommodation.images.map((image, index) => (
               <div key={index}>
                 <img
-                  className="d-block w-100"
+                  className="d-block w-100 carousel-image"
                   src={image}
                   alt={`Image ${index + 1}`}
                 />
@@ -127,17 +151,50 @@ function AccommodationPage() {
             ))}
           </Carousel>
         </div>
-        <div className="col-md-5">
+        <div className="col-md-3 details">
           <h2>What this place offers?</h2>
-          <ul>
-            <li>Furnished: {accommodation.furnished ? "Yes" : "No"}</li>
-            <li>Type: {accommodation.type}</li>
-            <li>Facilities: {accommodation.facilities.join(", ")}</li>
-            <li>Security: {accommodation.security}</li>
-            <li>Independent: {accommodation.independent ? "Yes" : "No"}</li>
-            <li>Amenities: {accommodation.amenities.join(", ")}</li>
-            <li>Distance: {accommodation.distance} km</li>
-            <li>For: {accommodation.for}</li>
+
+          <ul className="detailsList">
+            {" "}
+            <div className="liItem">
+              <AiOutlineHome />
+              <b> Furnished:</b> {accommodation.furnished ? "Yes" : "No"}
+              <br></br>
+            </div>
+            <div className="liItem">
+              <BsBuildingsFill />
+              <b> Type:</b> {accommodation.type}
+              <br></br>
+            </div>
+            <div className="liItem">
+              <AiTwotoneStar />
+              <b> Facilities:</b> {accommodation.facilities.join(", ")}
+              <br></br>
+            </div>
+            <div className="liItem">
+              <MdSecurity />
+              <b> Security:</b> {accommodation.security}
+              <br></br>
+            </div>
+            <div className="liItem">
+              <RiEmotionHappyFill />
+              <b> Independent:</b> {accommodation.independent ? "Yes" : "No"}
+              <br></br>
+            </div>
+            <div className="liItem">
+              <IoIosRocket />
+              <b> Amenities:</b> {accommodation.amenities.join(", ")}
+              <br></br>
+            </div>
+            <div className="liItem">
+              <RiPinDistanceFill />
+              <b> Distance:</b> {accommodation.distanceToCollege}<br></br>
+            </div>
+            <div className="liItem">
+              <ImManWoman />
+              <b> For:</b> {accommodation.for}
+              <br></br>
+            </div>
           </ul>
         </div>
       </div>

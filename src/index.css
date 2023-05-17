@@ -32,6 +32,9 @@ code {
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
+  border-radius: 20px;
+  background-color: #F4EEFF;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .owner-details-box h3 {
@@ -56,18 +59,30 @@ code {
 
 
 
-
-
-.nav-logo{
-  height: 200px;
-  width: 200px;
+.details{
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  background-color: #DCD6F7;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-left: 20px;
 }
 
 
+.detailsList{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: -30px;
+  margin-right: 3px;
 
+}
 
-
-
+.liItem{
+  margin-bottom: 10px;
+  font-size: 17px;
+}
 
 
 
@@ -114,15 +129,39 @@ code {
 
 
 .logo{
-  height: 70px;
-  width: 90px;
-  padding: 10px;
+  height: 40px;
+  width: 200px;
+  padding: 1px;
+  margin-bottom: 13px;
 }
 
 
+.navComp{
+  margin-bottom: 120px;
+}
+
+/* .nav-logo{
+  height: 500px;
+  width: 600px;
+} */
+
+.HomePage{
+background-color: #F5F5F5;
+padding: 0 20px;
+}
 
 
+.navbar{
+  background-color: #364F6B;
+  padding: 0 20px;
+  border-radius: 1px;
+  border: solid 1px #364F6B;
+}
 
-
+.header{
+  margin-top: -40px;
+  margin-bottom: 30px;
+  margin-left: 5px;
+}
 
 

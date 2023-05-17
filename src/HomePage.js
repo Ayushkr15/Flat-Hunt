@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 import { FiMapPin } from "react-icons/fi";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import NavBar from "./Navbar";
+import { Nav } from "react-bootstrap";
+
 
 function HomePage() {
   const [flatsData, setFlatsData] = useState([]);
@@ -60,7 +63,13 @@ function HomePage() {
 
   return (
     <div className="container my-4">
-      <h1 className="text-center mb-4">Available Flats</h1>
+      <style>{`
+        body {
+          background-color: #3FC1C9;
+        }
+      `}</style>
+      <NavBar />
+      {/* <h1 className="text-center mb-4">Available Flats</h1> */}
       <div className="row row-cols-1 row-cols-md-3 g-4">
         {flatsData.length === 0 ? (
           <p className="text-center">Loading flats...</p>
@@ -98,6 +107,11 @@ function HomePage() {
                             src={img.url}
                             alt={flat.name}
                             className="card-img-top"
+                            style={{
+                              height: "300px", // Set the desired height
+                              width: "100%", // Set the desired width
+                              objectFit: "cover", // Maintain the aspect ratio and cover the container
+                            }}
                           />
                         </div>
                       ))}

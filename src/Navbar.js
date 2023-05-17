@@ -4,18 +4,18 @@ import logo from "./logo.png";
 
 const NavBar = () => {
   return (
-    <div>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div className="navComp">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark ">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <img
               src={logo}
               alt=""
-              width="30"
-              height="30"
+              // width="50"
+              // height="50"
               class="d-inline-block align-text-top logo col-1"
             ></img>
-            {/* <span>Flat & PG Hunt</span> */}
+            
           </Link>
           <button
             className="navbar-toggler"
