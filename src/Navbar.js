@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "./logo.png";
 
 const NavBar = () => {
   return (
@@ -8,13 +9,13 @@ const NavBar = () => {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <img
-              // src={logoMonk}
+              src={logo}
               alt=""
               width="30"
               height="30"
-              class="d-inline-block align-text-top"
+              class="d-inline-block align-text-top logo col-1"
             ></img>
-            Flat & PG Hunt
+            {/* <span>Flat & PG Hunt</span> */}
           </Link>
           <button
             className="navbar-toggler"
@@ -42,7 +43,7 @@ const NavBar = () => {
                   Contact Us{" "}
                 </Link>{" "}
               </li>
-             
+
               <li className="nav-item">
                 {" "}
                 <Link className="nav-link" to="/about">
@@ -50,7 +51,6 @@ const NavBar = () => {
                   About Us{" "}
                 </Link>{" "}
               </li>
-         
             </ul>
           </div>
         </div>

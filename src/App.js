@@ -6,7 +6,6 @@ import ThankYouPage from "./ThankYouPage";
 import ContactUs from "./ContactUs";
 import AboutUs from "./AboutUs";
 import LandingPage from "./LandingPage";
-import NavBar from "./Navbar";
 
 
 function App() {
