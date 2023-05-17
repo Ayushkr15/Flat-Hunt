@@ -3,6 +3,9 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 import { useParams, useNavigate } from "react-router-dom";
 
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
@@ -44,7 +47,6 @@ function AccommodationPage() {
     };
   }, [id]);
 
-
   useEffect(() => {
     if (mapRef.current && accommodation) {
       const { latitude, longitude } = accommodation;
@@ -55,11 +57,7 @@ function AccommodationPage() {
 
       const map = new Map({
         target: mapRef.current,
-        layers: [
-          new TileLayer({
-            source: new OSM(),
-          }),
-        ],
+        layers: [new TileLayer({ source: new OSM() })],
         view: new View({
           center: coordinates,
           zoom: 15,
@@ -80,11 +78,54 @@ function AccommodationPage() {
       </div>
       <div className="row">
         <div className="col-md-7">
-          <img
-            className="d-block w-100"
-            src={accommodation.imageUrl}
-            alt={accommodation.name}
-          />
+          <Carousel
+            arrows={false}
+            autoPlay={true}
+            autoPlaySpeed={3000}
+            infinite={true}
+            partialVisible={true}
+            transitionDuration={1000}
+            showDots={true}
+            slidesToSlide={1}
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 1024,
+                },
+                items: 1,
+              },
+              mobile: {
+                breakpoint: {
+                  max: 464,
+                  min: 0,
+                },
+                items: 1,
+              },
+              tablet: {
+                breakpoint: {
+                  max: 1024,
+                  min: 464,
+                },
+                items: 1,
+              },
+            }}
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            slidesToSlide={1}
+          >
+            {accommodation.images.map((image, index) => (
+              <div key={index}>
+                <img
+                  className="d-block w-100"
+                  src={image}
+                  alt={`Image ${index + 1}`}
+                />
+              </div>
+            ))}
+          </Carousel>
         </div>
         <div className="col-md-5">
           <h2>What this place offers?</h2>
@@ -116,10 +157,13 @@ function AccommodationPage() {
           </p>
         </div>
       </div>
-      <button className="btn btn-primary interestedBtn" onClick={() => navigate("/form")}>
+      <button
+        className="btn btn-primary interestedBtn"
+        onClick={() => navigate("/form")}
+      >
         Interested
       </button>
-      <div ref={mapRef} className="map-container"></div>
+      <div ref={mapRef} className="map-container container"></div>
     </div>
   );
 }

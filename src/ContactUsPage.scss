@@ -1,0 +1,42 @@
+.ContactUsPage {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ContactUsPage h2 {
+  margin-bottom: 10px;
+}
+
+.ContactUsPage form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ContactUsPage input,
+.ContactUsPage textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ContactUsPage button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ContactUsPage button:hover {
+  background-color: #0056b3;
+}
+
+/* Additional styling for toast notifications */
+.Toastify__toast-container {
+  z-index: 9999;
+}

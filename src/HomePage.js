@@ -77,14 +77,19 @@ function HomePage() {
                 >
                   <Carousel
                     responsive={responsive}
-                    arrows={false}
-                    autoPlay={true}
+                    arrows={true}
+                    additionalTransfrom={0}
+                    centerMode={false}
+                    autoPlay={false}
                     autoPlaySpeed={3000}
                     infinite={true}
                     partialVisible={true}
                     transitionDuration={1000}
                     showDots={true}
                     slidesToSlide={1}
+                    focusOnSelect={false}
+                    keyBoardControl
+                    minimumTouchDrag={80}
                   >
                     {flat.images &&
                       flat.images.map((img, index) => (

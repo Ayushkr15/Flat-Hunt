@@ -3,16 +3,23 @@ import HomePage from "./HomePage";
 import AccommodationPage from "./AccommodationPage";
 import  FormPage from "./FormPage";
 import ThankYouPage from "./ThankYouPage";
+import ContactUs from "./ContactUs";
+import AboutUs from "./AboutUs";
+import LandingPage from "./LandingPage";
+import NavBar from "./Navbar";
+
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/accommodation/:id" element={<AccommodationPage />} />
         <Route path="/form" element={<FormPage />} />
         <Route path="/thankyou" element={<ThankYouPage />} />
-
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </div>
   );
