@@ -33,7 +33,7 @@ const NavBar = () => {
               <li className="nav-item">
                 <Link className="nav-link" aria-current="page" to="/home">
                   {" "}
-                  All Place
+                  Flats and Appartments
                 </Link>
               </li>
               <li className="nav-item">

@@ -50,7 +50,7 @@ const LandingPage = () => {
           marginLeft: "100px",
         }}
       >
-        <h1>Welcome to your HOME FINDER</h1>
+        <h2>Welcome to your HOME FINDER</h2>
         <p>Find the best accommodation that suits you the best!</p>
         <Link to="/home">
           <button type="button" class="btn btn-light">

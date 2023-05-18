@@ -65,7 +65,7 @@ function HomePage() {
     <div className="container my-4">
       <style>{`
         body {
-          background-color: #3FC1C9;
+          background-color: ##FFEDDB;
         }
       `}</style>
       <NavBar />

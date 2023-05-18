@@ -1,18 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./ThankYouPage.scss";
 
 function ThankYouPage() {
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Thank You!</h1>
-      <p className="text-center">
-        Your form has been submitted successfully. We appreciate your interest
-        and will get back to you soon.
-      </p>
-      <div className="text-center">
-        <Link to="/" className="btn btn-primary">
-          Back to Home
-        </Link>
+    <div className="content">
+      <div className="wrapper-1">
+        <div className="wrapper-2">
+          <h1>Thank you!</h1>
+          <p>Thanks for for showing interest in this accommodation.</p>
+          <p>You should receive a confirmation from owner soon.</p>
+          <br></br>
+          <Link to="/" className="go-home">
+            Go home
+          </Link>
+        </div>
+        <div className="footer-like">
+        </div>
       </div>
     </div>
   );

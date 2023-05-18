@@ -152,10 +152,10 @@ padding: 0 20px;
 
 
 .navbar{
-  background-color: #364F6B;
+  background-color: #6B4F4F;
   padding: 0 20px;
   border-radius: 1px;
-  border: solid 1px #364F6B;
+  border: solid 1px #6B4F4F;
 }
 
 .header{
@@ -165,3 +165,11 @@ padding: 0 20px;
 }
 
 
+h2 {
+  font-family: 'Sans-serif', cursive;
+  font-size: 2em;
+  letter-spacing: 3px;
+  color: #5892FF;
+  margin: 0;
+  margin-bottom: 20px;
+}
