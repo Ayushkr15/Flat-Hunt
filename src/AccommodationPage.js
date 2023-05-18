@@ -216,7 +216,7 @@ function AccommodationPage() {
         </div>
       </div>
       <button
-        className="btn btn-danger interestedBtn btn-lg btn-block"
+        className="btn btn-danger interestedBtn btn-block"
         onClick={() => navigate("/form")}
       >
         Interested

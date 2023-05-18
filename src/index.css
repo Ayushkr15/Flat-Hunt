@@ -172,8 +172,8 @@ h2 {
 }
 
 .main-content {
-  margin-left: 20px;
-  margin-top: 200px;
+  margin-left: 50px;
+  margin-top: 50px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -197,6 +197,33 @@ h2 {
     margin-top: -1px;
     margin-right: 0px;
     margin-left: -1px;
-   
+  }
+  .main-content {
+  margin-left: 20px;
+  margin-top: 200px;
+}
+
+.interestedBtn {
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 0;
+}
+
+ .content {
+    top: 60%;
+  }
+  .content h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .go-home {
+    font-size: 14px;
+    padding: 8px 16px;
   }
 }
