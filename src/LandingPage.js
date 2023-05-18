@@ -47,8 +47,9 @@ const LandingPage = () => {
           color: "#fff",
           zIndex: 1,
           padding: "0 20px",
-          marginLeft: "100px",
+      
         }}
+        className="main-content"
       >
         <h2>Welcome to your HOME FINDER</h2>
         <p>Find the best accommodation that suits you the best!</p>

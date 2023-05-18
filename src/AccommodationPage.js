@@ -111,6 +111,7 @@ function AccommodationPage() {
             transitionDuration={1000}
             showDots={true}
             slidesToSlide={1}
+            className="car-img"
             responsive={{
               desktop: {
                 breakpoint: {
@@ -153,7 +154,6 @@ function AccommodationPage() {
         </div>
         <div className="col-md-3 details">
           <h2>What this place offers?</h2>
-
           <ul className="detailsList">
             {" "}
             <div className="liItem">
@@ -188,7 +188,8 @@ function AccommodationPage() {
             </div>
             <div className="liItem">
               <RiPinDistanceFill />
-              <b> Distance:</b> {accommodation.distanceToCollege}<br></br>
+              <b> Distance:</b> {accommodation.distanceToCollege}
+              <br></br>
             </div>
             <div className="liItem">
               <ImManWoman />
@@ -215,12 +216,12 @@ function AccommodationPage() {
         </div>
       </div>
       <button
-        className="btn btn-primary interestedBtn"
+        className="btn btn-danger interestedBtn btn-lg btn-block"
         onClick={() => navigate("/form")}
       >
         Interested
       </button>
-      <div ref={mapRef} className="map-container container"></div>
+      <div ref={mapRef} className="map-container container col-md-6"></div>
     </div>
   );
 }
