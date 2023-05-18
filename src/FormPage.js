@@ -7,15 +7,18 @@ import { useNavigate } from "react-router-dom";
 function FormPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [contactNumber, setContactNumber] = useState("");
-  const [numberOfPeople, setNumberOfPeople] = useState("");
-  const [collegeId, setCollegeId] = useState("");
+  const [people, setPeople] = useState("");
+  const [role, setRole] = useState("");
+  const [irl, setIrl] = useState("Definitely");
+  const [shifting, setShifting] = useState(true);
+  const [comment, setComment] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const firebaseConfig = {
+      // Your Firebase config here
       apiKey: "AIzaSyCzbVr4tnzl4nqnmuMCdQykQY0jgCoaLU8",
       authDomain: "house-market-b38c7.firebaseapp.com",
       databaseURL:
@@ -33,9 +36,11 @@ function FormPage() {
     const formData = {
       name,
       email,
-      contactNumber,
-      numberOfPeople,
-      collegeId,
+      people,
+      role,
+      irl,
+      shifting,
+      comment,
     };
 
     formRef.push(formData);
@@ -43,77 +48,231 @@ function FormPage() {
     // Reset the form after submission
     setName("");
     setEmail("");
-    setContactNumber("");
-    setNumberOfPeople("");
-    setCollegeId("");
+    setPeople("");
+    setRole("");
+    setIrl("Definitely");
+    setShifting(true);
+    setComment("");
 
     // Navigate to the thank you page
     navigate("/thankyou");
   };
 
   return (
-    <div className="container my-5">
-      <h1 className="mb-5">Accommodation Inquiry Form</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="name">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
-          />
-        </Form.Group>
+    <div className="container formData">
+      <header className="header">
+        <h1 id="title" className="text-center">
+          Fill your details
+        </h1>
+        <p id="description" className="text-center">
+          If you like this accommodation please fill your details and soon the
+          owner will contact you.
+        </p>
+      </header>
+      <div className="form-wrap">
+        <form id="survey-form" onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label id="name-label" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Enter your name"
+                  className="form-control"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="form-group">
+                <label id="email-label" htmlFor="email">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="form-control"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            </div>
+          </div>
 
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label id="number-label" htmlFor="number">
+                  How many people you are? 
+                </label>
+                <input
+                  type="number"
+                  name="age"
+                  id="number"
+                  min="1"
+                  max="10"
+                  className="form-control"
+                  placeholder="Number of people"
+                  value={people}
+                  onChange={e => setPeople(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="col-md-6">
+              <div className="form-group">
+                <label>Current Role</label>
+                <select
+                  id="dropdown"
+                  name="role"
+                  className="form-control"
+                  value={role}
+                  onChange={e => setRole(e.target.value)}
+                  required
+                >
+                  <option disabled value="">
+                    Select
+                  </option>
+                  <option value="student">Student</option>
+                  <option value="learner">Teacher</option>
+                  <option value="job">Full Time Job</option>
+                  <option value="preferNo">Prefer not to say</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
 
-        <Form.Group controlId="contactNumber">
-          <Form.Label>Contact Number</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your contact number"
-            value={contactNumber}
-            onChange={e => setContactNumber(e.target.value)}
-            required
-          />
-        </Form.Group>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label>Do you want to see the place in real life?</label>
+                <div className="custom-control custom-radio custom-control-inline">
+                  <input
+                    type="radio"
+                    id="customRadioInline1"
+                    value="Definitely"
+                    name="customRadioInline1"
+                    className="custom-control-input"
+                    checked={irl === "Definitely"}
+                    onChange={() => setIrl("Definitely")}
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="customRadioInline1"
+                  >
+                    Definitely
+                  </label>
+                </div>
+                <div className="custom-control custom-radio custom-control-inline">
+                  <input
+                    type="radio"
+                    id="customRadioInline2"
+                    value="Maybe"
+                    name="customRadioInline1"
+                    className="custom-control-input"
+                    checked={irl === "Maybe"}
+                    onChange={() => setIrl("Maybe")}
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="customRadioInline2"
+                  >
+                    Maybe
+                  </label>
+                </div>
+                <div className="custom-control custom-radio custom-control-inline">
+                  <input
+                    type="radio"
+                    id="customRadioInline3"
+                    value="Not sure"
+                    name="customRadioInline1"
+                    className="custom-control-input"
+                    checked={irl === "Not sure"}
+                    onChange={() => setIrl("Not sure")}
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="customRadioInline3"
+                  >
+                    Not sure
+                  </label>
+                </div>
+              </div>
+            </div>
 
-        <Form.Group controlId="numberOfPeople">
-          <Form.Label>Number of People</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter number of people"
-            value={numberOfPeople}
-            onChange={e => setNumberOfPeople(e.target.value)}
-            required
-          />
-        </Form.Group>
+            <div className="col-md-6">
+              <div className="form-group">
+                <label>Do you also want help in shifting ?</label>
+                <div className="custom-control custom-checkbox custom-control-inline">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    name="yes"
+                    value="yes"
+                    id="yes"
+                    checked={shifting}
+                    onChange={e => setShifting(e.target.checked)}
+                  />
+                  <label className="custom-control-label" htmlFor="yes">
+                    Yes
+                  </label>
+                </div>
+                <div className="custom-control custom-checkbox custom-control-inline">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    name="no"
+                    value="no"
+                    id="no"
+                    checked={!shifting}
+                    onChange={e => setShifting(!e.target.checked)}
+                  />
+                  <label className="custom-control-label" htmlFor="no">
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <Form.Group controlId="collegeId">
-          <Form.Label>Why you want to live here? </Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your college ID"
-            value={collegeId}
-            onChange={e => setCollegeId(e.target.value)}
-            required
-          />
-        </Form.Group>
-        <br></br>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="form-group">
+                <label>Why you want this place ? </label>
+                <textarea
+                  id="comments"
+                  className="form-control"
+                  name="comment"
+                  placeholder="Enter your comment here..."
+                  value={comment}
+                  onChange={e => setComment(e.target.value)}
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-4">
+              <button
+                type="submit"
+                id="submit"
+                className="btn btn-warning btn-block btn-md submit-button"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
